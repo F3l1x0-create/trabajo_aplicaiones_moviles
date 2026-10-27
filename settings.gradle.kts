@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "aplication"
+rootProject.name = "MygosSport"
 include(":app")
