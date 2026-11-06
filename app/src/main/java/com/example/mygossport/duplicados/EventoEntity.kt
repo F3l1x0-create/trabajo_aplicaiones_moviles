@@ -1,5 +1,4 @@
-
-package com.example.mygossport
+package com.example.mygossport.duplicados
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

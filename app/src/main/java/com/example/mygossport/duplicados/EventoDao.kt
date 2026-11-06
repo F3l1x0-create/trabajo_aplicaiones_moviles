@@ -1,5 +1,4 @@
-
-package com.example.mygossport
+package com.example.mygossport.duplicados
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -1,5 +1,4 @@
-
-package com.example.mygossport
+package com.example.mygossport.duplicados
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -10,7 +9,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -31,13 +29,12 @@ import androidx.core.content.ContextCompat
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.rememberCameraPositionState
+import com.google.maps.android.compose.rememberMarkerState
 import kotlinx.coroutines.tasks.await
 
 private val VerdeMapa = Color(0xFF176B45)
@@ -155,7 +152,7 @@ fun PantallaMapa(
                 )
             ) {
                 Marker(
-                    state = com.google.maps.android.compose.rememberMarkerState(
+                    state = rememberMarkerState(
                         position = ubicacion ?: posicionInicial
                     ),
                     title = if (ubicacion != null) {

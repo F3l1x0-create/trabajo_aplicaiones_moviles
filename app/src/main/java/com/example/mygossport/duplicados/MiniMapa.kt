@@ -1,5 +1,4 @@
-
-package com.example.mygossport
+package com.example.mygossport.duplicados
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
@@ -12,8 +11,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,7 +53,7 @@ fun MiniMapa() {
                 drawRect(
                     color = Color(0xFFC7E2BC),
                     topLeft = Offset(ancho * 0.04f, alto * 0.08f),
-                    size = androidx.compose.ui.geometry.Size(
+                    size = Size(
                         ancho * 0.24f,
                         alto * 0.25f
                     )
@@ -61,7 +62,7 @@ fun MiniMapa() {
                 drawRect(
                     color = Color(0xFFC7E2BC),
                     topLeft = Offset(ancho * 0.67f, alto * 0.58f),
-                    size = androidx.compose.ui.geometry.Size(
+                    size = Size(
                         ancho * 0.27f,
                         alto * 0.30f
                     )
@@ -101,7 +102,7 @@ fun MiniMapa() {
                 drawPath(
                     path = camino,
                     color = calle,
-                    style = androidx.compose.ui.graphics.drawscope.Stroke(
+                    style = Stroke(
                         width = 17f
                     )
                 )
