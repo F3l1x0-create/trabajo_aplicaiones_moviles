@@ -1,16 +1,17 @@
+
 package com.example.mygossport.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.mygossport.data.UsuarioDao
 import com.example.mygossport.data.UsuarioEntity
+import com.example.mygossport.repository.UsuarioRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class UsuarioViewModel(
-    private val usuarioDao: UsuarioDao
+    private val repository: UsuarioRepository
 ) : ViewModel() {
 
     private val _mensaje = MutableStateFlow("")
@@ -26,12 +27,12 @@ class UsuarioViewModel(
     ) {
         viewModelScope.launch {
             try {
-                val usuarioExistente = usuarioDao.buscarPorCorreo(correo)
+                val usuarioExistente = repository.buscarPorCorreo(correo)
 
                 if (usuarioExistente != null) {
                     _mensaje.value = "Este correo ya está registrado."
                 } else {
-                    usuarioDao.insertarUsuario(
+                    repository.insertarUsuario(
                         UsuarioEntity(
                             nombre = nombre,
                             correo = correo,
@@ -50,7 +51,7 @@ class UsuarioViewModel(
     fun iniciarSesion(correo: String, contrasena: String) {
         viewModelScope.launch {
             try {
-                val usuario = usuarioDao.buscarPorCorreo(correo)
+                val usuario = repository.buscarPorCorreo(correo)
 
                 if (usuario != null && usuario.contrasena == contrasena) {
                     _usuarioIngresado.value = true
@@ -70,13 +71,13 @@ class UsuarioViewModel(
 }
 
 class UsuarioViewModelFactory(
-    private val usuarioDao: UsuarioDao
+    private val repository: UsuarioRepository
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(UsuarioViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
-            return UsuarioViewModel(usuarioDao) as T
+            return UsuarioViewModel(repository) as T
         }
 
         throw IllegalArgumentException("ViewModel desconocido")

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.mygossport.data.EventoEntity
-import com.example.mygossport.data.EventoRepository
+import com.example.mygossport.repository.EventoRepository
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
@@ -26,7 +26,6 @@ class EventoViewModel(
 
     private fun cargarActividadesDeEjemplo() {
         viewModelScope.launch {
-
             val actividades = listOf(
                 EventoEntity(
                     nombre = "Fútbol 7 recreativo",
